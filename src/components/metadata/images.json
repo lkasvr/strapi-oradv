@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_metadata_images",
+  "info": {
+    "displayName": "images"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "alt": {
+      "type": "string"
+    }
+  }
+}

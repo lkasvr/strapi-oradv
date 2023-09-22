@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_metadata_open_graphs",
+  "info": {
+    "displayName": "openGraph",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "siteName": {
+      "type": "string"
+    },
+    "images": {
+      "displayName": "images",
+      "type": "component",
+      "repeatable": true,
+      "component": "metadata.images"
+    },
+    "locale": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "publishedTime": {
+      "type": "string"
+    },
+    "authors": {
+      "type": "string"
+    }
+  }
+}

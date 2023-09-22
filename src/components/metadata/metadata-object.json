@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_metadata_metadata_objects",
+  "info": {
+    "displayName": "Object",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "applicationName": {
+      "type": "string",
+      "default": "or_adv",
+      "required": false
+    },
+    "keywords": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "creator": {
+      "type": "string",
+      "minLength": 3
+    },
+    "referrer": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "formatDetection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "metadata.format-detection"
+    },
+    "category": {
+      "type": "string"
+    },
+    "authors": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::author.author"
+    }
+  }
+}

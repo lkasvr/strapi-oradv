@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_icon_icons",
+  "info": {
+    "displayName": "icon",
+    "icon": "chartBubble",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "lib": {
+      "type": "string"
+    }
+  }
+}
