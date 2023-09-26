@@ -25,7 +25,8 @@
       "inversedBy": "articles"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
       "type": "text"
@@ -52,7 +53,7 @@
       "target": "api::author.author",
       "mappedBy": "articles"
     },
-    "metadata": {
+    "article_metada": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::article-metadata.article-metadata",

@@ -763,7 +763,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'manyToMany',
       'api::sub-category.sub-category'
     >;
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     description: Attribute.Text;
     content: Attribute.RichText;
     slug: Attribute.UID<'api::article.article', 'title'>;
@@ -778,7 +778,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'manyToMany',
       'api::author.author'
     >;
-    metadata: Attribute.Relation<
+    article_metada: Attribute.Relation<
       'api::article.article',
       'oneToOne',
       'api::article-metadata.article-metadata'
@@ -814,18 +814,18 @@ export interface ApiArticleMetadataArticleMetadata
     draftAndPublish: false;
   };
   attributes: {
-    article: Attribute.Relation<
-      'api::article-metadata.article-metadata',
-      'oneToOne',
-      'api::article.article'
-    >;
     applicationName: Attribute.String;
     keywords: Attribute.String;
     creator: Attribute.String;
     referrer: Attribute.String;
     publisher: Attribute.String;
     category: Attribute.String;
-    formatDetection: Attribute.Component<'metadata.format-detection'>;
+    formatDetection: Attribute.Component<'metadata.format-detection', true>;
+    article: Attribute.Relation<
+      'api::article-metadata.article-metadata',
+      'oneToOne',
+      'api::article.article'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -939,7 +939,7 @@ export interface ApiSubCategorySubCategory extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    name: Attribute.String;
+    name: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::sub-category.sub-category', 'name'>;
     displayName: Attribute.String;
     articles: Attribute.Relation<
