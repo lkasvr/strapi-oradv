@@ -29,14 +29,20 @@ export interface MetadataGoogleBot extends Schema.Component {
   collectionName: 'components_metadata_google_bots';
   info: {
     displayName: 'googleBot';
+    description: '';
   };
   attributes: {
-    index: Attribute.Boolean & Attribute.Required;
-    follow: Attribute.Boolean & Attribute.Required;
-    noimageindex: Attribute.Boolean & Attribute.Required;
-    maxVideoPreview: Attribute.Integer & Attribute.DefaultTo<-1>;
-    maxImagePreview: Attribute.String & Attribute.DefaultTo<'large'>;
-    maxSnippet: Attribute.Integer & Attribute.DefaultTo<-1>;
+    index: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    follow: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    noimageindex: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    maxSnippet: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        max: 100;
+      }> &
+      Attribute.DefaultTo<55>;
   };
 }
 
@@ -60,35 +66,12 @@ export interface MetadataMetadataObject extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    applicationName: Attribute.String & Attribute.DefaultTo<'or_adv'>;
     keywords: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
-    creator: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    referrer: Attribute.String;
-    publisher: Attribute.String;
-    formatDetection: Attribute.Component<'metadata.format-detection'>;
-    category: Attribute.String;
-    authors: Attribute.Relation<
-      'metadata.metadata-object',
-      'oneToMany',
-      'api::author.author'
-    >;
+    robots: Attribute.Component<'metadata.google-bot'> & Attribute.Required;
   };
 }
 

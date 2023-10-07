@@ -1,33 +1,31 @@
 {
   "collectionName": "components_metadata_google_bots",
   "info": {
-    "displayName": "googleBot"
+    "displayName": "googleBot",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "index": {
       "type": "boolean",
-      "required": true
+      "required": true,
+      "default": true
     },
     "follow": {
       "type": "boolean",
-      "required": true
+      "required": true,
+      "default": true
     },
     "noimageindex": {
       "type": "boolean",
-      "required": true
-    },
-    "maxVideoPreview": {
-      "type": "integer",
-      "default": -1
-    },
-    "maxImagePreview": {
-      "type": "string",
-      "default": "large"
+      "required": true,
+      "default": false
     },
     "maxSnippet": {
       "type": "integer",
-      "default": -1
+      "default": 55,
+      "required": true,
+      "max": 100
     }
   }
 }

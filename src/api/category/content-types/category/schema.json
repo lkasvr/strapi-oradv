@@ -25,11 +25,12 @@
       "mappedBy": "categories"
     },
     "displayName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
-      "targetField": "name"
+      "targetField": "displayName"
     },
     "icon": {
       "type": "component",

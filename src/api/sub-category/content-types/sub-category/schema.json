@@ -14,14 +14,15 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "slug": {
       "type": "uid",
-      "targetField": "name"
+      "targetField": "displayName"
     },
     "displayName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "articles": {
       "type": "relation",

@@ -44,20 +44,28 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "article"
     },
-    "imageRelated": {
-      "type": "string"
-    },
     "authors": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::author.author",
       "mappedBy": "articles"
     },
-    "article_metada": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::article-metadata.article-metadata",
-      "inversedBy": "article"
+    "metadata": {
+      "type": "component",
+      "repeatable": false,
+      "component": "metadata.metadata-object",
+      "required": true
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
