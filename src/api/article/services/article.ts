@@ -1,9 +1,3 @@
-/**
- * article service
- */
-
-import { Strapi, factories } from '@strapi/strapi';
-import utils from '@strapi/utils';
-const { ApplicationError, ValidationError } = utils.errors;
+import { factories } from '@strapi/strapi';
 
 export default factories.createCoreService('api::article.article');
