@@ -361,184 +361,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiArticleArticle extends Schema.CollectionType {
-  collectionName: 'articles';
-  info: {
-    singularName: 'article';
-    pluralName: 'articles';
-    displayName: 'article';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    categories: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::category.category'
-    >;
-    subCategories: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::sub-category.sub-category'
-    >;
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-    content: Attribute.RichText;
-    slug: Attribute.UID<'api::article.article', 'title'>;
-    users_permissions_user: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    authors: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::author.author'
-    >;
-    metadata: Attribute.Component<'metadata.metadata-object'> &
-      Attribute.Required;
-    coverImage: Attribute.Media & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiAuthorAuthor extends Schema.CollectionType {
-  collectionName: 'authors';
-  info: {
-    singularName: 'author';
-    pluralName: 'authors';
-    displayName: 'author';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Attribute.Relation<
-      'api::author.author',
-      'manyToMany',
-      'api::article.article'
-    >;
-    slug: Attribute.UID<'api::author.author', 'name'> & Attribute.Required;
-    user: Attribute.Relation<
-      'api::author.author',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    name: Attribute.String & Attribute.Required;
-    displayName: Attribute.String;
-    email: Attribute.Email & Attribute.Required;
-    personalPhoto: Attribute.Media;
-    url: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::author.author',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::author.author',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCategoryCategory extends Schema.CollectionType {
-  collectionName: 'categories';
-  info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'category';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    hexColor: Attribute.String;
-    articles: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::article.article'
-    >;
-    displayName: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::category.category', 'displayName'>;
-    icon: Attribute.Component<'icon.icon'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSubCategorySubCategory extends Schema.CollectionType {
-  collectionName: 'sub_categories';
-  info: {
-    singularName: 'sub-category';
-    pluralName: 'sub-categories';
-    displayName: 'subCategory';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    slug: Attribute.UID<'api::sub-category.sub-category', 'displayName'>;
-    displayName: Attribute.String & Attribute.Required;
-    articles: Attribute.Relation<
-      'api::sub-category.sub-category',
-      'manyToMany',
-      'api::article.article'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::sub-category.sub-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::sub-category.sub-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -652,51 +474,6 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginReactIconsIconlibrary extends Schema.CollectionType {
-  collectionName: 'iconlibrary';
-  info: {
-    singularName: 'iconlibrary';
-    pluralName: 'iconlibraries';
-    displayName: 'IconLibrary';
-  };
-  options: {
-    draftAndPublish: false;
-    comment: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    abbreviation: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        maxLength: 3;
-      }>;
-    isEnabled: Attribute.Boolean & Attribute.DefaultTo<true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::react-icons.iconlibrary',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::react-icons.iconlibrary',
       'oneToOne',
       'admin::user'
     > &
@@ -919,6 +696,184 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles';
+  info: {
+    singularName: 'article';
+    pluralName: 'articles';
+    displayName: 'article';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categories: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::category.category'
+    >;
+    subCategories: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::sub-category.sub-category'
+    >;
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    content: Attribute.RichText;
+    slug: Attribute.UID<'api::article.article', 'title'>;
+    users_permissions_user: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    authors: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::author.author'
+    >;
+    metadata: Attribute.Component<'metadata.metadata-object'> &
+      Attribute.Required;
+    coverImage: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAuthorAuthor extends Schema.CollectionType {
+  collectionName: 'authors';
+  info: {
+    singularName: 'author';
+    pluralName: 'authors';
+    displayName: 'author';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    articles: Attribute.Relation<
+      'api::author.author',
+      'manyToMany',
+      'api::article.article'
+    >;
+    slug: Attribute.UID<'api::author.author', 'name'> & Attribute.Required;
+    user: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    name: Attribute.String & Attribute.Required;
+    displayName: Attribute.String;
+    email: Attribute.Email & Attribute.Required;
+    personalPhoto: Attribute.Media;
+    url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    hexColor: Attribute.String;
+    articles: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::article.article'
+    >;
+    displayName: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::category.category', 'displayName'>;
+    icon: Attribute.Component<'icon.icon'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSubCategorySubCategory extends Schema.CollectionType {
+  collectionName: 'sub_categories';
+  info: {
+    singularName: 'sub-category';
+    pluralName: 'sub-categories';
+    displayName: 'subCategory';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    slug: Attribute.UID<'api::sub-category.sub-category', 'displayName'>;
+    displayName: Attribute.String & Attribute.Required;
+    articles: Attribute.Relation<
+      'api::sub-category.sub-category',
+      'manyToMany',
+      'api::article.article'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sub-category.sub-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sub-category.sub-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Shared {
     export interface ContentTypes {
@@ -929,17 +884,16 @@ declare module '@strapi/strapi' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::article.article': ApiArticleArticle;
-      'api::author.author': ApiAuthorAuthor;
-      'api::category.category': ApiCategoryCategory;
-      'api::sub-category.sub-category': ApiSubCategorySubCategory;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
-      'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::article.article': ApiArticleArticle;
+      'api::author.author': ApiAuthorAuthor;
+      'api::category.category': ApiCategoryCategory;
+      'api::sub-category.sub-category': ApiSubCategorySubCategory;
     }
   }
 }
